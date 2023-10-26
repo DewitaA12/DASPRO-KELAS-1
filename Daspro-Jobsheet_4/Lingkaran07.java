@@ -12,5 +12,6 @@ public class Lingkaran07{
         luas=phi*r*r;
         System.out.println("Keliling Lingkaran :" + keliling);
         System.out.println("Luas Lingkaran :" + luas);
+        input.close();
     }
 }
