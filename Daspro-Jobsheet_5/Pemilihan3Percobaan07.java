@@ -25,6 +25,6 @@ public class Pemilihan3Percobaan07 {
             System.out.println(angka1 + " / " + angka2 + " = " + hasil);
             break;
         }
-
+    input07.close();
     }
 }
