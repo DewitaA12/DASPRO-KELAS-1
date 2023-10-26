@@ -10,6 +10,6 @@ public class Segitiga07 {
     tinggi = sc.nextInt();
     luas = alas * tinggi / 2;
     System.out.println("Luas segitiga: " +luas);
-    
+    sc.close();
     }
 }
