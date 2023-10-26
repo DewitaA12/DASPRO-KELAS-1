@@ -6,5 +6,6 @@ public class Pemilihan1Percobaan07 {
     int angka = input07.nextInt();
     String bilangan = (angka % 2 == 0 ) ? "GANJIL" : "GENAP" ;
     System.out.println(bilangan);
+    input07.close();
     }
 }
