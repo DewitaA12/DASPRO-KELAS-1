@@ -11,12 +11,18 @@ public class Pemilihan2Percobaaan207 {
         sudut3 = inp07.nextInt();
         totalsudut = sudut1 + sudut2 + sudut3;
         if (totalsudut == 180) {
-            if((sudut1 == 90)||(sudut2 == 90) || (sudut3 == 90))
+            if((sudut1 == 90||sudut2 == 90 || sudut3 == 90)){
             System.out.println("Segitiga Siku-Siku");
-            else 
-            System.out.println("Bukan Segitiga Siku-Siku");
-        }else{
+            } else if (sudut1 > 90||sudut2 > 90||sudut3 > 90){
+            System.out.println("Segitiga Tumpul");
+            } else if (sudut1 < 90 && sudut2 < 90 && sudut3 < 90){
+            System.out.println("Segitiga Lancip");
+            } else {
+                System.out.println("Segitiga Sama Sisi");
+            } 
+        } else {
             System.out.println("Bukan Segitiga");
     }
     inp07.close();
-}}
+}
+}
