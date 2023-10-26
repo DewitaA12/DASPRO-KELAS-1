@@ -48,6 +48,7 @@ public class Pemilihan2Percobaan07{
         nilaisetara = "Tidak valid";
         message = "Nilai di luar rentang valid";
     }
+    input07.close();
 System.out.println("Nilai akhir = " + total + " sehingga nilai huruf = " + nilaihuruf + ", kualifikasi = " + message + ", Konversi = " + nilaisetara);
 }
 }
