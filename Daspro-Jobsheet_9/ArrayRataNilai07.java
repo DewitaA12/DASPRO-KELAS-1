@@ -22,6 +22,7 @@ public class ArrayRataNilai07 {
         }
         sc7.close();
         rata2 = total / nilaiMhs.length;
+        System.out.println("Jumlah Mahasiswa : " + jmlMhs);
         System.out.println("Rata-rata nilai = " + rata2);
         System.out.println("Jumlah mahasiswa yang lulus: " + jumlahLulus);
     }
