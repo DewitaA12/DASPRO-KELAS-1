@@ -1,7 +1,5 @@
-import java.util.Scanner;
-public class PenjumlahanDeret07 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
+public class MenampilkanDeretKecuali07{
+    public static void main (String[] args){
+        System.out.println("Mohon maaf file ini salah commit, ignore saja!");
     }
 }
