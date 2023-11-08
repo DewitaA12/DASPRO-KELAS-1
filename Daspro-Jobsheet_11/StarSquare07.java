@@ -8,7 +8,6 @@ public class StarSquare07 {
         for (int i=0; i<=N;i++){
             System.out.print("*");
         }
-        System.out.println();
         }
         sc7.close();
     }
