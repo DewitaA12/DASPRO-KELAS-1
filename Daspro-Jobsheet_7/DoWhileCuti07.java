@@ -27,6 +27,7 @@ public class DoWhileCuti07 {
             break;
         }
         }
-    while (true);
+        while (true);
+        sc.close();
 }
 }
