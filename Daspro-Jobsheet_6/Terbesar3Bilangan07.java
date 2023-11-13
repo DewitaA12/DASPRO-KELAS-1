@@ -2,12 +2,12 @@ import java.util.Scanner;
 public class Terbesar3Bilangan07 {
     public static void main(String[] args) {
         Scanner inp07 = new Scanner(System.in);
-        int bil1, bil2, bil3, x;
-        System.out.println("Masukkan Bilangan 1 :");
+        int bil1, bil2, bil3;
+        System.out.print("Masukkan Bilangan 1 :");
         bil1 = inp07.nextInt();
-        System.out.println("Masukkan Bilangan 2 :");
+        System.out.print("Masukkan Bilangan 2 :");
         bil2 = inp07.nextInt();
-        System.out.println("Masukkan Bilangan 3 :");
+        System.out.print("Masukkan Bilangan 3 :");
         bil3 = inp07.nextInt();
         if (bil1>bil2){
             if (bil1>bil3){
