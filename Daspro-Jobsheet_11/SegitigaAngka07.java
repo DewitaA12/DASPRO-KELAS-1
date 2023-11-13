@@ -3,7 +3,7 @@ public class SegitigaAngka07 {
 public static void main(String[] args) {
     Scanner sc7 = new Scanner(System.in);
 
-    // Masukkan tinggi segitiga yang dibuat
+// Masukkan tinggi segitiga yang dibuat
     System.out.print("Masukkan nilai N :");
     int N = sc7.nextInt();
 
