@@ -15,7 +15,7 @@ public class KotakAngka07 {
                 if (iO == 1 || iO == N || iI == 1 || iI == N) {
                     System.out.print(N + " ");
                 } else {
-                    
+
 // Spasi untuk area tengah
                     System.out.print("  "); 
                 }
@@ -25,4 +25,3 @@ public class KotakAngka07 {
         sc7.close();
     }
 }
-
