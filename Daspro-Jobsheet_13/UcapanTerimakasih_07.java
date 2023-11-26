@@ -16,11 +16,12 @@ public class UcapanTerimakasih_07 {
         "You inspired in me a love for learning and made me feel like i could ask you anything.");
     }
 
-    public static void UcapanTambahan(){
+    public static void UcapanTambahan(String Tambahan){
         UcapanTerimakasih();
-        System.out.println("I am grateful for your patience and understanding");
+        System.out.println(Tambahan);
     }
     public static void main(String[] args) {
-        UcapanTambahan();
+        String Tambahan = "I am grateful for your patience and understanding";
+        UcapanTambahan(Tambahan);
     }
 }
