@@ -6,16 +6,21 @@ public class UcapanTerimakasih_07 {
         System.out.println("Tuliskan NAMA orang yang ingin Anda beri ucapan:");
         String namaOrang = sc7.nextLine();
         sc7.close();
+
         return namaOrang;
     }
 
     public static void UcapanTerimakasih(){
         String nama = PenerimaUcapan();
         System.out.println("Thank you " +nama+ " for being the best teacher in the word.\n" +
-        "You inspired in me a love for learning for learning and made me feel like i could ask you anything.");
+        "You inspired in me a love for learning and made me feel like i could ask you anything.");
     }
 
-    public static void main(String[] args) {
+    public static void UcapanTambahan(){
         UcapanTerimakasih();
+        System.out.println("I am grateful for your patience and understanding");
+    }
+    public static void main(String[] args) {
+        UcapanTambahan();
     }
 }
