@@ -22,7 +22,6 @@ public class Kubus07 {
         
         volume();
         luaspermukaan();
-
         sc.close();
     }
 }
