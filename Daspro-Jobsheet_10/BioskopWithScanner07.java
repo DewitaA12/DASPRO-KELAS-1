@@ -26,7 +26,12 @@ public class BioskopWithScanner07 {
                     kolom = sc7.nextInt();
                     sc7.nextLine();
 
-                    penonton[baris - 1][kolom - 1] = nama;
+                    if (isValid(baris, kolom, penonton)) {
+                        penonton[baris - 1][kolom - 1] = nama;
+                        System.out.println("Data penonton telah disimpan.");
+                    } else {
+                        System.out.println("Nomor baris atau kolom kursi tidak tersedia.");
+                    }
                     break;
 
                 case 2:
@@ -47,7 +52,11 @@ public class BioskopWithScanner07 {
                 default:
                     System.out.println("Pilihan tidak valid.");
                     break;
+                }
             }
         }
+    // Fungsi untuk memeriksa validitas nomor baris dan kolom
+    static boolean isValid(int baris, int kolom, String[][] penonton) {
+        return baris >= 1 && baris <= penonton.length && kolom >= 1 && kolom <= penonton[0].length;
     }
 }
