@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Debian {
@@ -6,6 +7,7 @@ public class Debian {
     static String[][] tempat = new String[3][50];
     static double totalPembayaran = 0;
     static ArrayList<String> daftarBarang = new ArrayList<>();
+    static ArrayList<String> daftarPengeluaran = new ArrayList<>();
 
 
     static void menuUtama() {
@@ -49,10 +51,11 @@ public class Debian {
                 System.out.println("|====================================|");
                 System.out.println("|     1. Input Barang Masuk          |");
                 System.out.println("|     2. Data Barang Masuk           |");
-                System.out.println("|     3. Data Pengeluaran            |");
-                System.out.println("|     4. Data Pendapatan             |");
-                System.out.println("|     5. Gaji Karyawan               |");
-                System.out.println("|     6. Keluar dari menu Admin      |");
+                System.out.println("|     3. Input Pengeluaran           |");
+                System.out.println("|     4. Data  Pengeluaran           |");
+                System.out.println("|     5. Data Pendapatan             |");
+                System.out.println("|     6. Gaji Karyawan               |");
+                System.out.println("|     7. Keluar dari menu Admin      |");
                 System.out.println("|====================================|");
                 System.out.print("Pilih menu (1/2/3/4/5): ");
                 int admin = input.nextInt();
@@ -66,14 +69,17 @@ public class Debian {
                         tampilkanDaftarBarang();
                         break;
                     case 3:
-                        dataPengeluaran();
+                        inputPengeluaran();
                         break;
                     case 4:
-                        dataPendapatan();
+                        dataPengeluaran();
                         break;
                     case 5:
-                        dataPendapatan();gajiKaryawan();
+                        dataPendapatan();
+                        break;
                     case 6:
+                        gajiKaryawan();
+                    case 7:
                         System.out.println("Keluar dari menu Admin");
                         keluarMenuAdmin = true;
                         break;
@@ -124,152 +130,61 @@ public class Debian {
         System.out.println("==================================================================");
     }
 
-    static void dataPengeluaran() {
-        System.out.println("1. Januari");
-        System.out.println("2. Februari");
-        System.out.println("3. Maret");
-        System.out.println("4. April");
-        System.out.println("5. Mei");
-        System.out.println("6. Juni");
-        System.out.println("7. July");
-        System.out.println("8. Agustus");
-        System.out.println("9. September");
-        System.out.println("10. Oktober");
-        System.out.println("11. November");
-        System.out.println("12. Desember");
+    static void inputPengeluaran() {
+        boolean lanjutInput = true;
+        do {
+            System.out.print("Masukkan Tgl/Bulan : ");
+            String tgblan = input.nextLine();
+            System.out.print("Masukkan Tahun     : ");
+            int tahun = input.nextInt();
+            input.nextLine(); 
+            System.out.print("Ket. Pengeluaran   : ");
+            String ketpengeluaran = input.nextLine(); 
+            System.out.print("Jumlah Pengeluaran : ");
+            int jumlahpengeluaran = input.nextInt();
+            input.nextLine();
+    
+            String dataPengeluaran = "| Masukkan Tgl/Bulan  : " + tgblan + "\n| Masukkan Tahun     : "+ tahun + "\n| Ket. Pengeluaran   : " + ketpengeluaran + "\n| Jumlah Pengeluaran : " + jumlahpengeluaran;
+            daftarPengeluaran.add(dataPengeluaran);
+    
+            System.out.println(" Data pengeluaran  berhasil direkam.");
+    
+            System.out.println("Apakah Anda mau menginput data pengeluaran lagi? (y/n)");
+            String pilihan = input.nextLine();
+            lanjutInput = pilihan.equalsIgnoreCase("y");
+    
+        } while (lanjutInput);
+    }
 
-        for (int nomorBulan = 1; nomorBulan <= 12; nomorBulan++) {
+    static void dataPengeluaran() {
+        System.out.println("\n========================= Daftar Pengeluaran ======================");
+        for (String pengeluaran : daftarPengeluaran) {
+            System.out.println(pengeluaran);
+            System.out.println("------------------------------------------------------------------");
+        }
+        System.out.println("==================================================================");
+    }
+
+    static void dataPendapatan() {
+        String[] namaBulan = {
+            "Januari", "Februari", "Maret", "April",
+            "Mei", "Juni", "Juli", "Agustus",
+            "September", "Oktober", "November", "Desember"
+        };
+
+        for (String bulan : namaBulan) {
+            int totalPendapatan = 0;
             boolean lanjutInput = true;
 
             do {
-                System.out.print("Pilih bulan yang akan Anda hitung pengeluarannya: ");
-                nomorBulan = input.nextInt();
+                System.out.println("Anda memilih bulan " + bulan + ".");
+                System.out.print("Masukkan jumlah pendapatan : Rp");
+                int pendapatan = input.nextInt();
+                totalPendapatan += pendapatan;
 
-                switch (nomorBulan) {
-                    case 1:
-                        System.out.println("Anda memilih bulan Januari.");
-                        int totalPengeluaranJanuari = 0;
+                System.out.println("Total pendapatan untuk " + bulan + ": Rp" + totalPendapatan);
 
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanJanuari = input.nextInt();
-                        totalPengeluaranJanuari += keperluanJanuari;
-
-                        System.out.println("Total pengeluaran untuk Januari: Rp" + totalPengeluaranJanuari);
-                        break;
-                    case 2:
-                        System.out.println("Anda memilih bulan Februari.");
-                        int totalPengeluaranFebruari = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanFebruari = input.nextInt();
-                        totalPengeluaranFebruari += keperluanFebruari;
-
-                        System.out.println("Total pengeluaran untuk Februari: Rp" + totalPengeluaranFebruari);
-                        break;
-                    case 3:
-                        System.out.println("Anda memilih bulan Maret.");
-                        int totalPengeluaranMaret = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanMaret = input.nextInt();
-                        totalPengeluaranMaret += keperluanMaret;
-
-                        System.out.println("Total pengeluaran untuk Maret: Rp" + totalPengeluaranMaret);
-                        break;
-                    case 4:
-                        System.out.println("Anda memilih bulan April.");
-                        int totalPengeluaranApril = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanApril = input.nextInt();
-                        totalPengeluaranApril += keperluanApril;
-
-                        System.out.println("Total pengeluaran untuk April: Rp" + totalPengeluaranApril);
-                        break;
-                    case 5:
-                        System.out.println("Anda memilih bulan Mei.");
-                        int totalPengeluaranMei = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanMei = input.nextInt();
-                        totalPengeluaranMei += keperluanMei;
-
-                        System.out.println("Total pengeluaran untuk Mei: Rp" + totalPengeluaranMei);
-                        break;
-                    case 6:
-                        System.out.println("Anda memilih bulan Juni.");
-                        int totalPengeluaranJuni = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanJuni = input.nextInt();
-                        totalPengeluaranJuni += keperluanJuni;
-
-                        System.out.println("Total pengeluaran untuk Juni: Rp" + totalPengeluaranJuni);
-                        break;
-                    case 7:
-                        System.out.println("Anda memilih bulan Juli.");
-                        int totalPengeluaranJuli = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanJuli = input.nextInt();
-                        totalPengeluaranJuli += keperluanJuli;
-
-                        System.out.println("Total pengeluaran untuk Juli: Rp" + totalPengeluaranJuli);
-                        break;
-                    case 8:
-                        System.out.println("Anda memilih bulan Agustus.");
-                        int totalPengeluaranAgustus = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanAgustus = input.nextInt();
-                        totalPengeluaranAgustus += keperluanAgustus;
-
-                        System.out.println("Total pengeluaran untuk Agustus: Rp" + totalPengeluaranAgustus);
-                        break;
-                    case 9:
-                        System.out.println("Anda memilih bulan September.");
-                        int totalPengeluaranSeptember = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanSeptember = input.nextInt();
-                        totalPengeluaranSeptember += keperluanSeptember;
-
-                        System.out.println("Total pengeluaran untuk September: Rp" + totalPengeluaranSeptember);
-                        break;
-                    case 10:
-                        System.out.println("Anda memilih bulan Oktober.");
-                        int totalPengeluaranOktober = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanOktober = input.nextInt();
-                        totalPengeluaranOktober += keperluanOktober;
-
-                        System.out.println("Total pengeluaran untuk Oktober:Rp " + totalPengeluaranOktober);
-                        break;
-                    case 11:
-                        System.out.println("Anda memilih bulan November.");
-                        int totalPengeluaranNovember = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanNovember = input.nextInt();
-                        totalPengeluaranNovember += keperluanNovember;
-
-                        System.out.println("Total pengeluaran untuk November: Rp" + totalPengeluaranNovember);
-                        break;
-                    case 12:
-                        System.out.println("Anda memilih bulan Desember.");
-                        int totalPengeluaranDesember = 0;
-
-                        System.out.print("Masukkan jumlah pengeluaran : Rp");
-                        int keperluanDesember = input.nextInt();
-                        totalPengeluaranDesember += keperluanDesember;
-
-                        System.out.println("Total pengeluaran untuk Desember: Rp" + totalPengeluaranDesember);
-                        break;
-                    default:
-                        System.out.println("Pilihan bulan tidak valid");
-                }
-                System.out.print("Apakah Anda ingin menginput lagi di bulan " + namaBulan(nomorBulan) + "? (y/n): ");
+                System.out.print("Apakah Anda ingin menginput lagi di bulan " + bulan + "? (y/n): ");
                 String pilihan = input.next();
 
                 lanjutInput = pilihan.equalsIgnoreCase("y");
@@ -280,141 +195,6 @@ public class Debian {
 
             } while (lanjutInput);
         }
-    }
-
-    static void dataPendapatan() {
-        System.out.println("1. Januari");
-        System.out.println("2. Februari");
-        System.out.println("3. Maret");
-        System.out.println("4. April");
-        System.out.println("5. Mei");
-        System.out.println("6. Juni");
-        System.out.println("7. July");
-        System.out.println("8. Agustus");
-        System.out.println("9. September");
-        System.out.println("10. Oktober");
-        System.out.println("11. November");
-        System.out.println("12. Desember");
-
-        for (int nomorBulan = 1; nomorBulan <= 12; nomorBulan++) {
-            boolean lanjutInput = true;
-
-            do {
-                System.out.print("Pilih bulan yang akan Anda hitung pendapatannya: ");
-                nomorBulan = input.nextInt();
-
-                switch (nomorBulan) {
-                    case 1:
-                        System.out.println("Anda memilih bulan Januari.");
-                        int totalPengeluaranJanuari = 0;
-                        System.out.print("Masukkan jumlah pendapatan: Rp");
-                        int keperluanJanuari = input.nextInt();
-                        totalPengeluaranJanuari += keperluanJanuari;
-                        System.out.println("Total pendapatan untuk Januari: Rp" + totalPengeluaranJanuari);
-                        break;
-                    case 2:
-                        System.out.println("Anda memilih bulan Februari.");
-                        int totalPengeluaranFebruari = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanFebruari = input.nextInt();
-                        totalPengeluaranFebruari += keperluanFebruari;
-                        System.out.println("Total pendapatan untuk Februari: Rp" + totalPengeluaranFebruari);
-                        break;
-                    case 3:
-                        System.out.println("Anda memilih bulan Maret.");
-                        int totalPengeluaranMaret = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanMaret = input.nextInt();
-                        totalPengeluaranMaret += keperluanMaret;
-                        System.out.println("Total pendapatan untuk Maret: Rp" + totalPengeluaranMaret);
-                        break;
-                    case 4:
-                        System.out.println("Anda memilih bulan April.");
-                        int totalPengeluaranApril = 0;
-                        System.out.print("Masukkan jumlah  pendapatan : Rp");
-                        int keperluanApril = input.nextInt();
-                        totalPengeluaranApril += keperluanApril;
-                        System.out.println("Total pendapatan untuk April: Rp" + totalPengeluaranApril);
-                        break;
-                    case 5:
-                        System.out.println("Anda memilih bulan Mei.");
-                        int totalPengeluaranMei = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanMei = input.nextInt();
-                        totalPengeluaranMei += keperluanMei;
-                        System.out.println("Total pendapatan untuk Mei: Rp" + totalPengeluaranMei);
-                        break;
-                    case 6:
-                        System.out.println("Anda memilih bulan Juni.");
-                        int totalPengeluaranJuni = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanJuni = input.nextInt();
-                        totalPengeluaranJuni += keperluanJuni;
-                        System.out.println("Total pendapatan untuk Juni: Rp" + totalPengeluaranJuni);
-                        break;
-                    case 7:
-                        System.out.println("Anda memilih bulan Juli.");
-                        int totalPengeluaranJuli = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanJuli = input.nextInt();
-                        totalPengeluaranJuli += keperluanJuli;
-                        System.out.println("Total pendapatan untuk Juli: Rp" + totalPengeluaranJuli);
-                        break;
-                    case 8:
-                        System.out.println("Anda memilih bulan Agustus.");
-                        int totalPengeluaranAgustus = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanAgustus = input.nextInt();
-                        totalPengeluaranAgustus += keperluanAgustus;
-                        System.out.println("Total pendapatan untuk Agustus: Rp" + totalPengeluaranAgustus);
-                        break;
-                    case 9:
-                        System.out.println("Anda memilih bulan September.");
-                        int totalPengeluaranSeptember = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanSeptember = input.nextInt();
-                        totalPengeluaranSeptember += keperluanSeptember;
-                        System.out.println("Total pendapatan untuk September: Rp" + totalPengeluaranSeptember);
-                        break;
-                    case 10:
-                        System.out.println("Anda memilih bulan Oktober.");
-                        int totalPengeluaranOktober = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanOktober = input.nextInt();
-                        totalPengeluaranOktober += keperluanOktober;
-                        System.out.println("Total pendapatan untuk Oktober:Rp " + totalPengeluaranOktober);
-                        break;
-                    case 11:
-                        System.out.println("Anda memilih bulan November.");
-                        int totalPengeluaranNovember = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanNovember = input.nextInt();
-                        totalPengeluaranNovember += keperluanNovember;
-                        System.out.println("Total pendapatan untuk November: Rp" + totalPengeluaranNovember);
-                        break;
-                    case 12:
-                        System.out.println("Anda memilih bulan Desember.");
-                        int totalPengeluaranDesember = 0;
-                        System.out.print("Masukkan jumlah pendapatan : Rp");
-                        int keperluanDesember = input.nextInt();
-                        totalPengeluaranDesember += keperluanDesember;
-                        System.out.println("Total pendapatan untuk Desember: Rp" + totalPengeluaranDesember);
-                        break;
-                    default:
-                        System.out.println("Pilihan bulan tidak valid");
-                }
-                System.out.print("Apakah Anda ingin menginput lagi di bulan " + namaBulan(nomorBulan) + "? (y/n): ");
-                String pilihan = input.nextLine();
-
-                lanjutInput = pilihan.equalsIgnoreCase("y");
-
-                if (!lanjutInput) {
-                    return;
-                }
-
-            } while (lanjutInput);
-        }
-
     }
 
     static String namaBulan(int nomorBulan) {
