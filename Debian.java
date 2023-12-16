@@ -8,6 +8,7 @@ public class Debian {
     static double totalPembayaran = 0;
     static ArrayList<String> daftarBarang = new ArrayList<>();
     static ArrayList<String> daftarPengeluaran = new ArrayList<>();
+    static ArrayList<String> daftarPendapatan = new ArrayList<>();
 
 
     static void menuUtama() {
@@ -53,9 +54,10 @@ public class Debian {
                 System.out.println("|     2. Data Barang Masuk           |");
                 System.out.println("|     3. Input Pengeluaran           |");
                 System.out.println("|     4. Data  Pengeluaran           |");
-                System.out.println("|     5. Data Pendapatan             |");
-                System.out.println("|     6. Gaji Karyawan               |");
-                System.out.println("|     7. Keluar dari menu Admin      |");
+                System.out.println("|     5. Input Pendapatan            |");
+                System.out.println("|     6. Data Pendapatan             |");
+                System.out.println("|     7. Gaji Karyawan               |");
+                System.out.println("|     8. Keluar dari menu Admin      |");
                 System.out.println("|====================================|");
                 System.out.print("Pilih menu (1/2/3/4/5): ");
                 int admin = input.nextInt();
@@ -75,11 +77,14 @@ public class Debian {
                         dataPengeluaran();
                         break;
                     case 5:
-                        dataPendapatan();
+                        inputPendapatan();
                         break;
                     case 6:
-                        gajiKaryawan();
+                        dataPendapatan();
+                        break;
                     case 7:
+                        gajiKaryawan();
+                    case 8:
                         System.out.println("Keluar dari menu Admin");
                         keluarMenuAdmin = true;
                         break;
@@ -165,42 +170,39 @@ public class Debian {
         System.out.println("==================================================================");
     }
 
-    static void dataPendapatan() {
-        String[] namaBulan = {
-            "Januari", "Februari", "Maret", "April",
-            "Mei", "Juni", "Juli", "Agustus",
-            "September", "Oktober", "November", "Desember"
-        };
-
-        for (String bulan : namaBulan) {
-            int totalPendapatan = 0;
-            boolean lanjutInput = true;
-
-            do {
-                System.out.println("Anda memilih bulan " + bulan + ".");
-                System.out.print("Masukkan jumlah pendapatan : Rp");
-                int pendapatan = input.nextInt();
-                totalPendapatan += pendapatan;
-
-                System.out.println("Total pendapatan untuk " + bulan + ": Rp" + totalPendapatan);
-
-                System.out.print("Apakah Anda ingin menginput lagi di bulan " + bulan + "? (y/n): ");
-                String pilihan = input.next();
-
-                lanjutInput = pilihan.equalsIgnoreCase("y");
-
-                if (!lanjutInput) {
-                    return;
-                }
-
-            } while (lanjutInput);
-        }
+    static void inputPendapatan() {
+        boolean lanjutInput = true;
+        do {
+            System.out.print("Masukkan Tgl/Bulan : ");
+            String tgbln = input.nextLine();
+            System.out.print("Masukkan Tahun     : ");
+            int thn = input.nextInt();
+            input.nextLine(); 
+            System.out.print("Ket. Pendapatan   : ");
+            String ketpen = input.nextLine(); 
+            System.out.print("Jumlah Pendapatan : ");
+            int jumlahpen = input.nextInt();
+            input.nextLine();
+    
+            String dataPendapatan = "| Masukkan Tgl/Bulan  : " + tgbln + "\n| Masukkan Tahun     : "+ thn + "\n| Ket. Pendapatan    : " + ketpen + "\n| Jumlah Pendapatan  : " + jumlahpen;
+            daftarPendapatan.add(dataPendapatan);
+    
+            System.out.println(" Data pendapatan  berhasil direkam.");
+    
+            System.out.println("Apakah Anda mau menginput data pendapatan lagi? (y/n)");
+            String pilihan = input.nextLine();
+            lanjutInput = pilihan.equalsIgnoreCase("y");
+    
+        } while (lanjutInput);
     }
 
-    static String namaBulan(int nomorBulan) {
-        String[] namaBulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
-                "Oktober", "November", "Desember" };
-        return namaBulan[nomorBulan - 1];
+    static void dataPendapatan() {
+        System.out.println("\n========================= Daftar Pendapatan ======================");
+        for (String pendapatan : daftarPendapatan) {
+            System.out.println(pendapatan);
+            System.out.println("------------------------------------------------------------------");
+        }
+        System.out.println("==================================================================");
     }
 
     static void gajiKaryawan() {
@@ -531,7 +533,8 @@ public class Debian {
             System.out.println("|====================================|");
             System.out.println("|     1. Tempat pelanggan            |");
             System.out.println("|     2. Tampilkan daftar tempat     |");
-            System.out.println("|     3. Exit                        |");
+            System.out.println("|     3. Edit data pelanggan         |");
+            System.out.println("|     4. Exit                        |");
             System.out.println("|====================================|");
             System.out.print("Pilih menu (1/2/3): ");
             int m = input.nextInt();
@@ -545,6 +548,9 @@ public class Debian {
                     tampilkanDaftarMeja();
                     break;
                 case 3:
+                    editDataPelanggan();
+                    break;
+                case 4:
                     System.out.println("Terima kasih! Keluar dari program.");
                     return;
                 default:
@@ -613,6 +619,24 @@ public class Debian {
                     System.out.println("===================================================");
                 }
             }
+        }
+    }
+
+    static void editDataPelanggan() {
+        System.out.print("Masukkan lantai meja yang selesai makan: ");
+        int baris = input.nextInt();
+        System.out.print("Masukkan nomor meja yang selesai makan: ");
+        int kolom = input.nextInt();
+    
+        if (baris >= 1 && baris <= tempat.length && kolom >= 1 && kolom <= tempat[0].length) {
+            if (tempat[baris - 1][kolom - 1] != null) {
+                tempat[baris - 1][kolom - 1] = null;
+                System.out.println("Data pelanggan di meja tersebut berhasil dihapus.");
+            } else {
+                System.out.println("Maaf, meja tersebut sudah kosong.");
+            }
+        } else {
+            System.out.println("Nomor lantai atau meja tidak valid. Silakan coba lagi.");
         }
     }
 
